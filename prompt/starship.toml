@@ -1,0 +1,128 @@
+# Hawkins Terminal - Starship Prompt Theme
+# A Stranger Things-inspired prompt
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Timeout for commands that take too long
+command_timeout = 1000
+
+[character]
+success_symbol = "[❯](bold #ff1744)"
+error_symbol = "[❯](bold #d50000)"
+vimcmd_symbol = "[❮](bold #d500f9)"
+
+[username]
+style_user = "bold #ff1744"
+style_root = "bold #d50000"
+format = "[$user]($style) "
+disabled = false
+show_always = false
+
+[hostname]
+style = "bold #ff4081"
+format = "[@$hostname]($style) "
+ssh_only = true
+
+[directory]
+style = "bold #ffab00"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncate_to_repo = true
+read_only = " "
+read_only_style = "bold #d50000"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"~" = " "
+
+[git_branch]
+style = "bold #00e676"
+format = "[$symbol$branch]($style) "
+symbol = " "
+
+[git_status]
+style = "bold #d500f9"
+format = '([$all_status$ahead_behind]($style) )'
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+conflicted = "="
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[git_state]
+style = "bold #ff4081"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+
+[cmd_duration]
+style = "bold #2979ff"
+format = "[$duration]($style) "
+min_time = 2_000
+show_milliseconds = false
+
+[time]
+disabled = true
+style = "bold #00e5ff"
+format = "[$time]($style) "
+time_format = "%H:%M"
+
+# Language version indicators
+[nodejs]
+style = "bold #00e676"
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[python]
+style = "bold #ffab00"
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = " "
+
+[rust]
+style = "bold #ff1744"
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[golang]
+style = "bold #00e5ff"
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[docker_context]
+style = "bold #2979ff"
+format = "[$symbol$context]($style) "
+symbol = " "
+only_with_files = true
+
+[kubernetes]
+style = "bold #d500f9"
+format = '[$symbol$context( \($namespace\))]($style) '
+symbol = "☸ "
+disabled = true
+
+[package]
+style = "bold #ff4081"
+format = "[$symbol$version]($style) "
+symbol = " "

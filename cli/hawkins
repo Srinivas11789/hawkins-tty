@@ -1,0 +1,165 @@
+#!/usr/bin/env bash
+# hawkins - Main CLI for Hawkins Terminal
+# A Stranger Things-inspired terminal experience
+
+set -e
+
+# Resolve symlinks to get real script location
+_HAWKINS_SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$_HAWKINS_SOURCE" ]]; do
+    _HAWKINS_DIR="$(cd -P "$(dirname "$_HAWKINS_SOURCE")" && pwd)"
+    _HAWKINS_SOURCE="$(readlink "$_HAWKINS_SOURCE")"
+    [[ "$_HAWKINS_SOURCE" != /* ]] && _HAWKINS_SOURCE="$_HAWKINS_DIR/$_HAWKINS_SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$_HAWKINS_SOURCE")" && pwd)"
+
+# Source libraries
+source "${SCRIPT_DIR}/lib/colors.sh"
+source "${SCRIPT_DIR}/lib/banner.sh"
+source "${SCRIPT_DIR}/lib/effects.sh"
+source "${SCRIPT_DIR}/lib/christmas.sh"
+
+VERSION="1.0.0"
+
+# Help message
+show_help() {
+    echo -e "${TC_NEON_RED}Hawkins Terminal${RESET} v${VERSION}"
+    echo
+    echo -e "${TC_AMBER}Usage:${RESET}"
+    echo "  hawkins [command] [options]"
+    echo
+    echo -e "${TC_AMBER}Commands:${RESET}"
+    echo -e "  ${TC_SLIME}banner${RESET}              Display ASCII banner"
+    echo -e "  ${TC_SLIME}flicker${RESET}             Banner with flicker effect"
+    echo -e "  ${TC_SLIME}glow${RESET} <message>      Glowing text effect"
+    echo -e "  ${TC_SLIME}type${RESET} <message>      Typewriter effect"
+    echo -e "  ${TC_SLIME}glitch${RESET} <message>    Glitch text effect"
+    echo -e "  ${TC_SLIME}lights${RESET}              Christmas lights animation"
+    echo -e "  ${TC_SLIME}wall${RESET} <message>      Alphabet wall (spell message)"
+    echo -e "  ${TC_SLIME}power${RESET}               CRT power-on effect"
+    echo -e "  ${TC_SLIME}help${RESET}                Show this help"
+    echo -e "  ${TC_SLIME}version${RESET}             Show version"
+    echo
+    echo -e "${TC_AMBER}Options:${RESET}"
+    echo "  -c, --color <color>  Set color (red, pink, blue, green, yellow, purple, cyan)"
+    echo "  -d, --duration <s>   Animation duration in seconds"
+    echo
+    echo -e "${TC_AMBER}Examples:${RESET}"
+    echo "  hawkins                     # Show banner with random effect"
+    echo "  hawkins banner              # Show static banner"
+    echo "  hawkins flicker             # Flickering banner"
+    echo "  hawkins type \"Hello\"        # Typewriter effect"
+    echo "  hawkins glow \"HAWKINS\"      # Glowing text"
+    echo "  hawkins lights              # Christmas lights"
+    echo "  hawkins wall \"RUN\"          # Spell on alphabet wall"
+    echo
+}
+
+# Parse command line arguments
+parse_args() {
+    COLOR="red"
+    DURATION=""
+    COMMAND=""
+    MESSAGE=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -c|--color)
+                COLOR="$2"
+                shift 2
+                ;;
+            -d|--duration)
+                DURATION="$2"
+                shift 2
+                ;;
+            -h|--help|help)
+                show_help
+                exit 0
+                ;;
+            -v|--version|version)
+                echo "hawkins v${VERSION}"
+                exit 0
+                ;;
+            banner|flicker|glow|type|glitch|lights|wall|power)
+                COMMAND="$1"
+                shift
+                # Remaining args are the message
+                MESSAGE="$*"
+                break
+                ;;
+            *)
+                # If no command specified, treat as message for default command
+                MESSAGE="$*"
+                break
+                ;;
+        esac
+    done
+}
+
+# Main entry point
+main() {
+    parse_args "$@"
+
+    case "$COMMAND" in
+        banner)
+            show_banner "$COLOR"
+            ;;
+        flicker)
+            flicker_banner "${DURATION:-3}"
+            ;;
+        glow)
+            if [[ -z "$MESSAGE" ]]; then
+                MESSAGE="HAWKINS"
+            fi
+            glow_text "$MESSAGE" "${DURATION:-3}" "$COLOR"
+            ;;
+        type)
+            if [[ -z "$MESSAGE" ]]; then
+                MESSAGE="The Upside Down awaits..."
+            fi
+            typewriter "$MESSAGE" 0.05 "$COLOR"
+            ;;
+        glitch)
+            if [[ -z "$MESSAGE" ]]; then
+                MESSAGE="STRANGER THINGS"
+            fi
+            glitch_text "$MESSAGE" "${DURATION:-2}" "$COLOR"
+            ;;
+        lights)
+            christmas_lights 50 "${DURATION:-10}" 0.2
+            ;;
+        wall)
+            if [[ -z "$MESSAGE" ]]; then
+                MESSAGE="RUN"
+            fi
+            alphabet_wall "$MESSAGE" 0.8
+            ;;
+        power)
+            power_on
+            ;;
+        "")
+            # No command - show banner with random effect
+            local effects=("banner" "flicker" "glow")
+            local random_effect="${effects[$((RANDOM % ${#effects[@]}))]}"
+
+            case "$random_effect" in
+                banner)
+                    show_banner_gradient
+                    ;;
+                flicker)
+                    flicker_banner 2
+                    ;;
+                glow)
+                    show_banner "$COLOR"
+                    ;;
+            esac
+            ;;
+        *)
+            echo "Unknown command: $COMMAND" >&2
+            echo "Run 'hawkins help' for usage information." >&2
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

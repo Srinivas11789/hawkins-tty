@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-*
+
+# Temp files
+/tmp/
+*.tmp
+*.log
+
+# Local development
+.env
+.env.local

@@ -1,0 +1,180 @@
+{
+  "Profiles": [
+    {
+      "Name": "Hawkins",
+      "Guid": "hawkins-terminal-profile-001",
+      "Dynamic Profile Parent Name": "Default",
+
+      "Custom Directory": "No",
+      "Working Directory": "~",
+
+      "Use Non-ASCII Font": false,
+      "Normal Font": "MesloLGS-NF-Regular 14",
+      "Non Ascii Font": "MesloLGS-NF-Regular 14",
+
+      "Rows": 30,
+      "Columns": 120,
+
+      "Background Color": {
+        "Red Component": 0.039215686274509803,
+        "Green Component": 0.039215686274509803,
+        "Blue Component": 0.058823529411764705,
+        "Color Space": "sRGB"
+      },
+      "Foreground Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.090196078431372548,
+        "Blue Component": 0.26666666666666666,
+        "Color Space": "sRGB"
+      },
+      "Bold Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.25098039215686274,
+        "Blue Component": 0.50588235294117645,
+        "Color Space": "sRGB"
+      },
+      "Cursor Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.25098039215686274,
+        "Blue Component": 0.50588235294117645,
+        "Color Space": "sRGB"
+      },
+      "Cursor Text Color": {
+        "Red Component": 0.039215686274509803,
+        "Green Component": 0.039215686274509803,
+        "Blue Component": 0.058823529411764705,
+        "Color Space": "sRGB"
+      },
+      "Selection Color": {
+        "Red Component": 0.83529411764705885,
+        "Green Component": 0.0,
+        "Blue Component": 0.0,
+        "Alpha Component": 0.5,
+        "Color Space": "sRGB"
+      },
+      "Selected Text Color": {
+        "Red Component": 1.0,
+        "Green Component": 1.0,
+        "Blue Component": 1.0,
+        "Color Space": "sRGB"
+      },
+
+      "Ansi 0 Color": {
+        "Red Component": 0.039215686274509803,
+        "Green Component": 0.039215686274509803,
+        "Blue Component": 0.058823529411764705,
+        "Color Space": "sRGB"
+      },
+      "Ansi 1 Color": {
+        "Red Component": 0.83529411764705885,
+        "Green Component": 0.0,
+        "Blue Component": 0.0,
+        "Color Space": "sRGB"
+      },
+      "Ansi 2 Color": {
+        "Red Component": 0.0,
+        "Green Component": 0.90196078431372551,
+        "Blue Component": 0.46274509803921571,
+        "Color Space": "sRGB"
+      },
+      "Ansi 3 Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.6705882352941176,
+        "Blue Component": 0.0,
+        "Color Space": "sRGB"
+      },
+      "Ansi 4 Color": {
+        "Red Component": 0.16078431372549021,
+        "Green Component": 0.47450980392156861,
+        "Blue Component": 1.0,
+        "Color Space": "sRGB"
+      },
+      "Ansi 5 Color": {
+        "Red Component": 0.83529411764705885,
+        "Green Component": 0.0,
+        "Blue Component": 0.97647058823529409,
+        "Color Space": "sRGB"
+      },
+      "Ansi 6 Color": {
+        "Red Component": 0.0,
+        "Green Component": 0.89803921568627454,
+        "Blue Component": 1.0,
+        "Color Space": "sRGB"
+      },
+      "Ansi 7 Color": {
+        "Red Component": 0.8,
+        "Green Component": 0.8,
+        "Blue Component": 0.8,
+        "Color Space": "sRGB"
+      },
+      "Ansi 8 Color": {
+        "Red Component": 0.3,
+        "Green Component": 0.3,
+        "Blue Component": 0.35,
+        "Color Space": "sRGB"
+      },
+      "Ansi 9 Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.090196078431372548,
+        "Blue Component": 0.26666666666666666,
+        "Color Space": "sRGB"
+      },
+      "Ansi 10 Color": {
+        "Red Component": 0.41176470588235292,
+        "Green Component": 0.94117647058823528,
+        "Blue Component": 0.68235294117647061,
+        "Color Space": "sRGB"
+      },
+      "Ansi 11 Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.84313725490196079,
+        "Blue Component": 0.25098039215686274,
+        "Color Space": "sRGB"
+      },
+      "Ansi 12 Color": {
+        "Red Component": 0.50980392156862742,
+        "Green Component": 0.69411764705882351,
+        "Blue Component": 1.0,
+        "Color Space": "sRGB"
+      },
+      "Ansi 13 Color": {
+        "Red Component": 1.0,
+        "Green Component": 0.25098039215686274,
+        "Blue Component": 0.50588235294117645,
+        "Color Space": "sRGB"
+      },
+      "Ansi 14 Color": {
+        "Red Component": 0.51764705882352946,
+        "Green Component": 1.0,
+        "Blue Component": 1.0,
+        "Color Space": "sRGB"
+      },
+      "Ansi 15 Color": {
+        "Red Component": 1.0,
+        "Green Component": 1.0,
+        "Blue Component": 1.0,
+        "Color Space": "sRGB"
+      },
+
+      "Cursor Type": 2,
+      "Blinking Cursor": true,
+      "Cursor Boost": 0.2,
+
+      "Transparency": 0.05,
+      "Blur": true,
+      "Blur Radius": 10,
+
+      "Minimum Contrast": 0.0,
+
+      "Scrollback Lines": 10000,
+      "Unlimited Scrollback": false,
+
+      "Mouse Reporting": true,
+      "Terminal Type": "xterm-256color",
+
+      "Initial Text": "source ~/.config/hawkins-terminal/shell/hawkins.sh 2>/dev/null || true",
+
+      "Tags": ["Hawkins", "Stranger Things", "80s", "Synthwave"]
+    }
+  ]
+}
