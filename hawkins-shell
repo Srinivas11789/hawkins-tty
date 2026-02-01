@@ -3,7 +3,6 @@
 #
 # Usage:
 #   hawkins-shell        # Launch interactive Hawkins shell
-#   hawkins-shell -c "cmd"  # Run a command in Hawkins context
 #
 # This allows you to enjoy Hawkins Terminal in a specific window
 # without enabling it system-wide.
@@ -28,16 +27,49 @@ fi
 USER_SHELL="${SHELL:-/bin/bash}"
 SHELL_NAME="$(basename "$USER_SHELL")"
 
-# Launch shell with Hawkins sourced
 case "$SHELL_NAME" in
     zsh)
-        exec zsh -c "source '$HAWKINS_SH'; exec zsh -i"
+        # For zsh: create temp directory with .zshrc
+        HAWKINS_ZDOTDIR=$(mktemp -d "${TMPDIR:-/tmp}/hawkins-zsh.XXXXXX")
+        cat > "$HAWKINS_ZDOTDIR/.zshrc" << EOF
+# Load user's zshrc first (using original ZDOTDIR or HOME)
+if [[ -f "\${_HAWKINS_ORIG_ZDOTDIR:-\$HOME}/.zshrc" ]]; then
+    source "\${_HAWKINS_ORIG_ZDOTDIR:-\$HOME}/.zshrc"
+fi
+
+# Load Hawkins Terminal
+source '$HAWKINS_SH'
+
+# Cleanup temp directory on exit
+trap "rm -rf '$HAWKINS_ZDOTDIR'" EXIT
+EOF
+        # Save original ZDOTDIR and launch
+        export _HAWKINS_ORIG_ZDOTDIR="${ZDOTDIR:-$HOME}"
+        export ZDOTDIR="$HAWKINS_ZDOTDIR"
+        exec zsh -i
         ;;
     bash)
-        exec bash --rcfile <(echo "source '$HAWKINS_SH'") -i
+        # For bash: use --rcfile with temp file
+        HAWKINS_RC=$(mktemp "${TMPDIR:-/tmp}/hawkins-bashrc.XXXXXX")
+        cat > "$HAWKINS_RC" << EOF
+# Load user's bashrc first
+[[ -f ~/.bashrc ]] && source ~/.bashrc
+
+# Load Hawkins Terminal
+source '$HAWKINS_SH'
+
+# Cleanup temp file on exit
+trap "rm -f '$HAWKINS_RC'" EXIT
+EOF
+        exec bash --rcfile "$HAWKINS_RC" -i
         ;;
     *)
-        # Fallback - try bash
-        exec bash --rcfile <(echo "source '$HAWKINS_SH'") -i
+        # Fallback to bash
+        HAWKINS_RC=$(mktemp "${TMPDIR:-/tmp}/hawkins-bashrc.XXXXXX")
+        cat > "$HAWKINS_RC" << EOF
+source '$HAWKINS_SH'
+trap "rm -f '$HAWKINS_RC'" EXIT
+EOF
+        exec bash --rcfile "$HAWKINS_RC" -i
         ;;
 esac
