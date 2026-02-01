@@ -14,6 +14,7 @@ elif [[ -n "$BASH_VERSION" ]]; then
 else
     _CHRISTMAS_SCRIPT_DIR="$(dirname "$0")"
 fi
+# shellcheck source=/dev/null
 source "${_CHRISTMAS_SCRIPT_DIR}/colors.sh"
 
 # Cleanup on exit

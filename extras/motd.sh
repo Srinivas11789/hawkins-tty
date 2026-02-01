@@ -7,7 +7,9 @@ HAWKINS_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Source the CLI if available
 if [[ -f "$HAWKINS_DIR/cli/hawkins" ]]; then
+    # shellcheck source=/dev/null
     source "$HAWKINS_DIR/cli/lib/colors.sh"
+    # shellcheck source=/dev/null
     source "$HAWKINS_DIR/cli/lib/banner.sh"
 fi
 

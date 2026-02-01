@@ -14,9 +14,13 @@ done
 SCRIPT_DIR="$(cd -P "$(dirname "$_HAWKINS_SOURCE")" && pwd)"
 
 # Source libraries
+# shellcheck source=/dev/null
 source "${SCRIPT_DIR}/lib/colors.sh"
+# shellcheck source=/dev/null
 source "${SCRIPT_DIR}/lib/banner.sh"
+# shellcheck source=/dev/null
 source "${SCRIPT_DIR}/lib/effects.sh"
+# shellcheck source=/dev/null
 source "${SCRIPT_DIR}/lib/christmas.sh"
 
 VERSION="1.0.0"

@@ -14,7 +14,9 @@ elif [[ -n "$BASH_VERSION" ]]; then
 else
     _BANNER_SCRIPT_DIR="$(dirname "$0")"
 fi
+# shellcheck source=/dev/null
 source "${_BANNER_SCRIPT_DIR}/colors.sh"
+# shellcheck source=/dev/null
 source "${_BANNER_SCRIPT_DIR}/christmas.sh"
 
 # Get the banner file path

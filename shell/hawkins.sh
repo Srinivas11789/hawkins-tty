@@ -11,6 +11,7 @@ _HAWKINS_SHELL_LOADED=1
 # =============================================================================
 
 # Source user config if it exists (created by install-light/install-rich)
+# shellcheck source=/dev/null
 [[ -f "${HOME}/.config/hawkins-terminal/env" ]] && source "${HOME}/.config/hawkins-terminal/env"
 
 : "${HAWKINS_ACTIVE:=1}"
@@ -47,9 +48,13 @@ if [[ ! -f "$_HAWKINS_DIR/cli/hawkins" ]]; then
 fi
 
 # Source library files
+# shellcheck source=/dev/null
 source "$_HAWKINS_DIR/cli/lib/colors.sh"
+# shellcheck source=/dev/null
 source "$_HAWKINS_DIR/cli/lib/christmas.sh"
+# shellcheck source=/dev/null
 source "$_HAWKINS_DIR/cli/lib/banner.sh"
+# shellcheck source=/dev/null
 source "$_HAWKINS_DIR/cli/lib/effects.sh"
 
 # =============================================================================
@@ -557,6 +562,7 @@ if [[ -n "$ZSH_VERSION" ]]; then
 
     # Source zsh theme if not using starship or oh-my-zsh
     if ! command -v starship &>/dev/null && [[ -z "$ZSH_THEME" ]]; then
+        # shellcheck source=/dev/null
         [[ -f "$_HAWKINS_DIR/prompt/hawkins.zsh-theme" ]] && source "$_HAWKINS_DIR/prompt/hawkins.zsh-theme"
     fi
 
@@ -573,6 +579,7 @@ elif [[ -n "$BASH_VERSION" ]]; then
 
     # Source bash prompt if not using starship
     if ! command -v starship &>/dev/null; then
+        # shellcheck source=/dev/null
         [[ -f "$_HAWKINS_DIR/prompt/hawkins.bashrc" ]] && source "$_HAWKINS_DIR/prompt/hawkins.bashrc"
     fi
 fi

@@ -14,6 +14,7 @@ elif [[ -n "$BASH_VERSION" ]]; then
 else
     _EFFECTS_SCRIPT_DIR="$(dirname "$0")"
 fi
+# shellcheck source=/dev/null
 source "${_EFFECTS_SCRIPT_DIR}/colors.sh"
 # Note: banner.sh should be sourced before effects.sh when used in hawkins.sh
 
