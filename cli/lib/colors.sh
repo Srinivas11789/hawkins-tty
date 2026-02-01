@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # colors.sh - Hawkins Terminal color definitions
+# shellcheck disable=SC2034  # Variables are used by scripts that source this file
 
 # Prevent multiple sourcing
 [[ -n "$_HAWKINS_COLORS_LOADED" ]] && return 0
@@ -7,6 +8,7 @@ _HAWKINS_COLORS_LOADED=1
 
 # Get script directory (works in both bash and zsh)
 if [[ -n "$ZSH_VERSION" ]]; then
+    # shellcheck disable=SC2296,SC2298  # Valid zsh syntax
     _COLORS_SCRIPT_DIR="${${(%):-%x}:A:h}"
 elif [[ -n "$BASH_VERSION" ]]; then
     _COLORS_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

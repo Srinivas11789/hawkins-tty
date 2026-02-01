@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  syntax-check:
+    name: Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bash syntax check
+        run: make test
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          ignore_paths: 'iterm'
+
+  multi-shell:
+    name: Multi-Shell Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test with Bash
+        run: |
+          echo "Bash version: $BASH_VERSION"
+          bash -n shell/hawkins.sh
+          bash -n cli/hawkins
+          bash -c 'source shell/hawkins.sh && echo "Bash sourcing: OK"'
+
+      - name: Test with Zsh
+        run: |
+          echo "Zsh version: $(zsh --version)"
+          zsh -n shell/hawkins.sh
+          zsh -c 'source shell/hawkins.sh && echo "Zsh sourcing: OK"'
