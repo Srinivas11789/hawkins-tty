@@ -112,9 +112,11 @@ if [[ -n "$SHELL_RC" ]]; then
         echo -e "  Shell integration already in ${CYAN}$SHELL_RC${RESET}"
     else
         # Add to shell rc
-        echo "" >> "$SHELL_RC"
-        echo "# Hawkins Terminal - Stranger Things theme" >> "$SHELL_RC"
-        echo "$SOURCE_LINE" >> "$SHELL_RC"
+        {
+            echo ""
+            echo "# Hawkins Terminal - Stranger Things theme"
+            echo "$SOURCE_LINE"
+        } >> "$SHELL_RC"
         echo -e "  Added to ${CYAN}$SHELL_RC${RESET}"
         echo -e "  ${PINK}Banner will show on new terminal windows!${RESET}"
     fi

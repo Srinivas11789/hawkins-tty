@@ -7,6 +7,7 @@ _HAWKINS_BANNER_LOADED=1
 
 # Get script directory (works in both bash and zsh)
 if [[ -n "$ZSH_VERSION" ]]; then
+    # shellcheck disable=SC2296,SC2298
     _BANNER_SCRIPT_DIR="${${(%):-%x}:A:h}"
 elif [[ -n "$BASH_VERSION" ]]; then
     _BANNER_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

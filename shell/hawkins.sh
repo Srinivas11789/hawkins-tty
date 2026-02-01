@@ -373,68 +373,68 @@ _hawkins_show_success() {
         # Eleven
         '"Friends dont lie." - Eleven'
         '"I can do it." - Eleven'
-        '"Bit*hin'." - Eleven'
+        '"Bit*hin'"'"'." - Eleven'
         '"I dump your ass." - Eleven'
         # Hopper
         '"Mornings are for coffee and contemplation." - Hopper'
         '"Keep the door open 3 inches." - Hopper'
-        '"You'\''re a good kid, you know that?" - Hopper'
+        '"You'"'"'re a good kid, you know that?" - Hopper'
         # Joyce
         '"This is not crazy. This is real!" - Joyce'
         '"I will never stop looking for him." - Joyce'
         '"I know my son." - Joyce'
         # Dustin
-        '"She'\''s our friend and she'\''s crazy!" - Dustin'
+        '"She'"'"'s our friend and she'"'"'s crazy!" - Dustin'
         '"I am on a curiosity voyage." - Dustin'
         '"Just wait till we tell Will." - Dustin'
         '"You got the job!" - Dustin'
-        '"Son of a bit*h. You'\''re really no help at all." - Dustin'
+        '"Son of a bit*h. You'"'"'re really no help at all." - Dustin'
         '"If you die, I die." - Dustin'
         '"Dude, you did it! You won a fight!" - Dustin'
-        '"Everyone'\''s getting a t-shirt." - Dustin'
+        '"Everyone'"'"'s getting a t-shirt." - Dustin'
         '"This is a groundbreaking scientific discovery." - Dustin'
-        '"What'\''s Planck'\''s constant? 6.62607004." - Dustin'
+        '"What'"'"'s Planck'"'"'s constant? 6.62607004." - Dustin'
         '"You just saved the world." - Dustin'
         # Steve
         '"Henderson! Get in here!" - Steve'
         '"Ahoy ladies!" - Steve'
         '"Six nuggets. For real?" - Steve'
         '"Me Three." - Steve'
-        '"I may be a pretty shitty boyfriend, but it turns out I'\''m a pretty good babysitter." - Steve'
+        '"I may be a pretty shitty boyfriend, but it turns out I'"'"'m a pretty good babysitter." - Steve'
         '"That settles it." - Steve'
         # Robin
         '"How many children are you friends with?" - Robin'
         '"Dingus!" - Robin'
         '"You rule, you know that?" - Robin'
-        '"I'\''m Robin. As in bird." - Robin'
-        '"We'\''re not even in the game; we'\''re on the bench." - Robin'
-        '"Secret Russians? I don'\''t know, I guess I just wanted it to be real." - Robin'
+        '"I'"'"'m Robin. As in bird." - Robin'
+        '"We'"'"'re not even in the game; we'"'"'re on the bench." - Robin'
+        '"Secret Russians? I don'"'"'t know, I guess I just wanted it to be real." - Robin'
         '"Ask me tomorrow." - Robin'
         # Eddie
         '"This is music!" - Eddie'
-        '"I didn'\''t run away this time, right?" - Eddie'
+        '"I didn'"'"'t run away this time, right?" - Eddie'
         '"Most metal ever!" - Eddie'
         '"Chrissy, this is for you!" - Eddie'
         # Max
-        '"I'\''m not afraid of you." - Max'
-        '"Lucas, I'\''m still here." - Max'
+        '"I'"'"'m not afraid of you." - Max'
+        '"Lucas, I'"'"'m still here." - Max'
         '"I was angry at everything. I just needed someone to blame." - Max'
         # Murray
         '"Bald eagle. Bald eagle!" - Murray'
-        '"It'\''s all connected!" - Murray'
+        '"It'"'"'s all connected!" - Murray'
         '"Why is this four year old speaking to me?" - Murray'
         # Lucas
-        '"We never would'\''ve found Will without you." - Lucas'
+        '"We never would'"'"'ve found Will without you." - Lucas'
         '"He farted." - Lucas'
         # Will
-        '"It'\''s like home, but it'\''s so dark and empty." - Will'
-        '"What if he figures out we'\''re spying on him? What if he spies back?" - Will'
-        '"And I'\''m always there for you too." - Will'
+        '"It'"'"'s like home, but it'"'"'s so dark and empty." - Will'
+        '"What if he figures out we'"'"'re spying on him? What if he spies back?" - Will'
+        '"And I'"'"'m always there for you too." - Will'
         # Nancy
         '"I wanted to be different, I guess." - Nancy'
         '"What did you do?" - Nancy'
         '"I want to kill it." - Nancy'
-        '"It'\''s bullsh*t." - Nancy'
+        '"It'"'"'s bullsh*t." - Nancy'
         # Hopper
         '"This is not real, this is a kids game." - Hopper'
         '"Joyce, drive!" - Hopper'
@@ -517,12 +517,16 @@ hawkins_header() {
 if [[ "${HAWKINS_COLORIZE_COMMANDS:-1}" == "1" ]]; then
     # Styled ls
     if command -v gls &>/dev/null; then
-        alias ls='gls --color=auto'
+        _hawkins_ls_cmd='gls --color=auto'
     elif ls --color=auto &>/dev/null 2>&1; then
-        alias ls='ls --color=auto'
+        _hawkins_ls_cmd='ls --color=auto'
     else
-        alias ls='ls -G'
+        _hawkins_ls_cmd='ls -G'
     fi
+    
+    # Define alias after determining command
+    # shellcheck disable=SC2139
+    alias ls="$_hawkins_ls_cmd"
 
     alias ll='ls -lah'
     alias la='ls -a'
