@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Hawkins</string>
+	<key>type</key>
+	<string>Window Settings</string>
+	<key>CommandString</key>
+	<string>~/.local/bin/hawkins-shell</string>
+	<key>RunCommandAsShell</key>
+	<true/>
+	<key>BackgroundColor</key>
+	<data>YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldOU1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NGMC4wNCAwABACgALSFBUWF1okY2xhc3NuYW1lWCRjbGFzc2VzV05TQ29sb3KiFhhYTlNPYmplY3QIERokKTI3SUxRU1heZWx4eoCGAAAAAAAAdwAAAAAAAAgAAAAAAAAA2gAAAAAAAA==</data>
+	<key>TextColor</key>
+	<data>YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldOU1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NGMS4wIDAuMjcAEAKAAtIUFRYXWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIWGFhOU09iamVjdAgRGiQpMjdJTFFTWF5lbHh6gIYAAAAAAAAAAGcAAAAAAAAACAAAAAAAAADaAAAAAAAAAA==</data>
+	<key>CursorColor</key>
+	<data>YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldOU1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NGMS4wIDAuNQAQAoAC0hQVFhdaJGNsYXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNYXmVseHqAhgAAAAAAAAAAYwAAAAAAAAgAAAAAAAAA2gAAAAAAAA==</data>
+	<key>Font</key>
+	<data>YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERITFFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA18QEE1lbmxvLVJlZ3VsYXINCNIXGBkaWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohkbWE5TT2JqZWN0CBEaJCkyN0lMUVNYXmVseHqAjZCWn6ixAAAAAAAAAAB1AAAAAAAAACAAAAAAAAAA2gAAAAAAAA==</data>
+	<key>columnCount</key>
+	<integer>120</integer>
+	<key>rowCount</key>
+	<integer>30</integer>
+</dict>
+</plist>

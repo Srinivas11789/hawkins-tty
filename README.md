@@ -52,6 +52,19 @@ source "$HOME/.local/share/hawkins-terminal/shell/hawkins.sh"
 
 Restart your terminal and enter the Upside Down. 🌌
 
+## 🎯 On-Demand Mode (Per-Window)
+
+Don't want Hawkins in every terminal? Launch it only when you want:
+
+```bash
+# After install, run this to open a Hawkins shell
+hawkins-shell
+```
+
+**iTerm2:** Go to Profiles → Select "Hawkins" → Opens a themed terminal
+
+**Terminal.app:** Import `extras/Hawkins.terminal`, then Shell → New Window → Hawkins
+
 ## 📸 Screenshots
 
 <!-- Add your screenshots here -->

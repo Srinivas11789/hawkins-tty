@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# hawkins-shell - Launch a new shell with Hawkins Terminal enabled
+#
+# Usage:
+#   hawkins-shell        # Launch interactive Hawkins shell
+#   hawkins-shell -c "cmd"  # Run a command in Hawkins context
+#
+# This allows you to enjoy Hawkins Terminal in a specific window
+# without enabling it system-wide.
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+HAWKINS_SH="$SCRIPT_DIR/shell/hawkins.sh"
+
+# Check if hawkins.sh exists
+if [[ ! -f "$HAWKINS_SH" ]]; then
+    # Try installed location
+    if [[ -f "$HOME/.local/share/hawkins-terminal/shell/hawkins.sh" ]]; then
+        HAWKINS_SH="$HOME/.local/share/hawkins-terminal/shell/hawkins.sh"
+    elif [[ -f "$HOME/.config/hawkins-terminal/shell/hawkins.sh" ]]; then
+        HAWKINS_SH="$HOME/.config/hawkins-terminal/shell/hawkins.sh"
+    else
+        echo "Error: hawkins.sh not found" >&2
+        exit 1
+    fi
+fi
+
+# Detect user's preferred shell
+USER_SHELL="${SHELL:-/bin/bash}"
+SHELL_NAME="$(basename "$USER_SHELL")"
+
+# Launch shell with Hawkins sourced
+case "$SHELL_NAME" in
+    zsh)
+        exec zsh -c "source '$HAWKINS_SH'; exec zsh -i"
+        ;;
+    bash)
+        exec bash --rcfile <(echo "source '$HAWKINS_SH'") -i
+        ;;
+    *)
+        # Fallback - try bash
+        exec bash --rcfile <(echo "source '$HAWKINS_SH'") -i
+        ;;
+esac

@@ -172,7 +172,8 @@
       "Mouse Reporting": true,
       "Terminal Type": "xterm-256color",
 
-      "Initial Text": "source ~/.config/hawkins-terminal/shell/hawkins.sh 2>/dev/null || true",
+      "Command": "~/.local/bin/hawkins-shell",
+      "Custom Command": "Yes",
 
       "Tags": ["Hawkins", "Stranger Things", "80s", "Synthwave"]
     }

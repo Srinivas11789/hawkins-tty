@@ -36,6 +36,9 @@ install:
 	@cp -r prompt $(INSTALL_DIR)/
 	@chmod +x $(INSTALL_DIR)/cli/hawkins
 	@ln -sf $(INSTALL_DIR)/cli/hawkins $(BIN_DIR)/hawkins
+	@cp hawkins-shell $(INSTALL_DIR)/
+	@chmod +x $(INSTALL_DIR)/hawkins-shell
+	@ln -sf $(INSTALL_DIR)/hawkins-shell $(BIN_DIR)/hawkins-shell
 	@echo "$(INSTALL_DIR)" > $(CONFIG_DIR)/path
 	@# Auto-add to shell config if not already present
 	@if [ -f "$(HOME)/.zshrc" ]; then \
