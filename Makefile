@@ -98,6 +98,7 @@ uninstall:
 	@rm -rf $(INSTALL_DIR)
 	@rm -rf $(CONFIG_DIR)
 	@rm -f $(BIN_DIR)/hawkins
+	@rm -f $(BIN_DIR)/hawkins-shell
 	@# Remove from shell config
 	@if [ -f "$(HOME)/.zshrc" ] && grep -q 'hawkins-terminal/shell/hawkins.sh' "$(HOME)/.zshrc" 2>/dev/null; then \
 		sed -i.bak '/# Hawkins Terminal/d; /hawkins-terminal\/shell\/hawkins.sh/d' "$(HOME)/.zshrc"; \
