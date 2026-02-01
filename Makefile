@@ -12,7 +12,8 @@ help:
 	@echo "Hawkins Terminal - Stranger Things shell experience"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make install       - Install Hawkins Terminal (rich mode)"
+	@echo "  make install       - Install system-wide (all terminals)"
+	@echo "  make install-local - Install on-demand only (hawkins-shell)"
 	@echo "  make install-rich  - Install with rich mode (ASCII art, effects)"
 	@echo "  make install-light - Install with light mode (minimal output)"
 	@echo "  make uninstall     - Remove Hawkins Terminal"
@@ -73,6 +74,24 @@ install-rich: install
 install-light: install
 	@echo "export HAWKINS_DISPLAY_MODE=light" > $(CONFIG_DIR)/env
 	@echo "Light mode configured."
+
+install-local:
+	@echo "Installing Hawkins Terminal (local/on-demand only)..."
+	@mkdir -p $(INSTALL_DIR)
+	@mkdir -p $(CONFIG_DIR)
+	@mkdir -p $(BIN_DIR)
+	@cp -r cli $(INSTALL_DIR)/
+	@cp -r shell $(INSTALL_DIR)/
+	@cp -r prompt $(INSTALL_DIR)/
+	@chmod +x $(INSTALL_DIR)/cli/hawkins
+	@ln -sf $(INSTALL_DIR)/cli/hawkins $(BIN_DIR)/hawkins
+	@cp hawkins-shell $(INSTALL_DIR)/
+	@chmod +x $(INSTALL_DIR)/hawkins-shell
+	@ln -sf $(INSTALL_DIR)/hawkins-shell $(BIN_DIR)/hawkins-shell
+	@echo "$(INSTALL_DIR)" > $(CONFIG_DIR)/path
+	@echo ""
+	@echo "Local install complete! Run 'hawkins-shell' to launch."
+	@echo "Shell RC files were NOT modified."
 
 uninstall:
 	@echo "Uninstalling Hawkins Terminal..."

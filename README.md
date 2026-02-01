@@ -42,26 +42,26 @@ This isn't just a color scheme — it's a full **immersive terminal experience**
 ```bash
 git clone https://github.com/Srinivas11789/hawkins-tty.git
 cd hawkins-tty
-make install
 ```
 
-Then add to your `~/.zshrc` or `~/.bashrc`:
-```bash
-source "$HOME/.local/share/hawkins-terminal/shell/hawkins.sh"
-```
+**Choose your mode:**
+
+| Command | Effect |
+|---------|--------|
+| `make install` | 🌍 System-wide - every terminal gets Hawkins |
+| `make install-local` | 🎯 On-demand - use `hawkins-shell` when you want it |
 
 Restart your terminal and enter the Upside Down. 🌌
 
-## 🎯 On-Demand Mode (Per-Window)
+## 🎯 On-Demand Mode
 
-Don't want Hawkins in every terminal? Launch it only when you want:
+Installed with `make install-local`? Just run:
 
 ```bash
-# After install, run this to open a Hawkins shell
 hawkins-shell
 ```
 
-**iTerm2:** Go to Profiles → Select "Hawkins" → Opens a themed terminal
+**iTerm2:** Profiles → Select "Hawkins" → Opens a themed terminal
 
 **Terminal.app:** Import `extras/Hawkins.terminal`, then Shell → New Window → Hawkins
 
