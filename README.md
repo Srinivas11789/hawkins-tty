@@ -48,14 +48,15 @@ cd hawkins-tty
 
 | Command | Effect |
 |---------|--------|
-| `make install` | 🌍 System-wide - every terminal gets Hawkins |
-| `make install-local` | 🎯 On-demand - use `hawkins-shell` when you want it |
+| `make install` | 🎯 On-demand - use `hawkins-shell` when you want it |
+| `make install launch` | 🚀 Install and launch immediately |
+| `make install-global` | 🌍 System-wide - every terminal gets Hawkins |
 
-Restart your terminal and enter the Upside Down. 🌌
+Then enter the Upside Down. 🌌
 
-## 🎯 On-Demand Mode
+## 🎯 On-Demand Mode (Default)
 
-Installed with `make install-local`? Just run:
+Installed with `make install`? Just run:
 
 ```bash
 hawkins-shell
@@ -147,13 +148,17 @@ cp prompt/hawkins.zsh-theme ~/.oh-my-zsh/custom/themes/
 ## ⚙️ Makefile Commands
 
 ```bash
-make install     # 📦 Install to ~/.local/share/hawkins-terminal
-make uninstall   # 🗑️  Remove installation
-make reinstall   # 🔄 Clean reinstall
-make test        # 🧪 Run syntax checks
-make demo        # 🎬 Preview startup effects
-make demo-error  # 👹 Preview error messages (Demogorgon!)
-make clean       # 🧹 Clean temp files
+make install          # 🎯 Install on-demand (use hawkins-shell)
+make install launch   # 🚀 Install and launch immediately
+make install-global   # 🌍 Install system-wide (all terminals)
+make install-rich     # 🌍 Install system-wide with rich mode
+make install-light    # 🌍 Install system-wide with light mode
+make uninstall        # 🗑️  Remove installation
+make reinstall        # 🔄 Clean reinstall (system-wide)
+make test             # 🧪 Run syntax checks
+make demo             # 🎬 Preview startup effects
+make demo-error       # 👹 Preview error messages (Demogorgon!)
+make clean            # 🧹 Clean temp files
 ```
 
 ## 🗑️ Uninstall

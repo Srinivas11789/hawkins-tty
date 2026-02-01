@@ -4,7 +4,7 @@ INSTALL_DIR := $(HOME)/.local/share/hawkins-terminal
 CONFIG_DIR := $(HOME)/.config/hawkins-terminal
 BIN_DIR := $(HOME)/.local/bin
 
-.PHONY: all install install-light install-rich uninstall link link-light link-rich test clean help
+.PHONY: all install install-global install-light install-rich launch uninstall link link-light link-rich test clean help
 
 all: help
 
@@ -12,23 +12,51 @@ help:
 	@echo "Hawkins Terminal - Stranger Things shell experience"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make install       - Install system-wide (all terminals)"
-	@echo "  make install-local - Install on-demand only (hawkins-shell)"
-	@echo "  make install-rich  - Install with rich mode (ASCII art, effects)"
-	@echo "  make install-light - Install with light mode (minimal output)"
-	@echo "  make uninstall     - Remove Hawkins Terminal"
-	@echo "  make link          - Create symlink (for development)"
-	@echo "  make test          - Run syntax checks"
-	@echo "  make demo          - Show demo of startup effects"
-	@echo "  make demo-success  - Show demo of success messages"
-	@echo "  make demo-error    - Show demo of error messages"
-	@echo "  make demo-light    - Show demo in light mode"
-	@echo "  make demo-rich     - Show demo in rich mode"
-	@echo "  make config        - Show configuration options"
+	@echo "  make install        - Install on-demand (use hawkins-shell)"
+	@echo "  make install launch - Install and launch immediately"
+	@echo "  make install-global - Install system-wide (all terminals)"
+	@echo "  make install-rich   - Install system-wide with rich mode"
+	@echo "  make install-light  - Install system-wide with light mode"
+	@echo "  make uninstall      - Remove Hawkins Terminal"
+	@echo "  make link           - Create symlink (for development)"
+	@echo "  make test           - Run syntax checks"
+	@echo "  make demo           - Show demo of startup effects"
+	@echo "  make demo-success   - Show demo of success messages"
+	@echo "  make demo-error     - Show demo of error messages"
+	@echo "  make demo-light     - Show demo in light mode"
+	@echo "  make demo-rich      - Show demo in rich mode"
+	@echo "  make config         - Show configuration options"
 	@echo ""
 
 install:
-	@echo "Installing Hawkins Terminal..."
+	@echo "Installing Hawkins Terminal (on-demand)..."
+	@mkdir -p $(INSTALL_DIR)
+	@mkdir -p $(CONFIG_DIR)
+	@mkdir -p $(BIN_DIR)
+	@cp -r cli $(INSTALL_DIR)/
+	@cp -r shell $(INSTALL_DIR)/
+	@cp -r prompt $(INSTALL_DIR)/
+	@chmod +x $(INSTALL_DIR)/cli/hawkins
+	@ln -sf $(INSTALL_DIR)/cli/hawkins $(BIN_DIR)/hawkins
+	@cp hawkins-shell $(INSTALL_DIR)/
+	@chmod +x $(INSTALL_DIR)/hawkins-shell
+	@ln -sf $(INSTALL_DIR)/hawkins-shell $(BIN_DIR)/hawkins-shell
+	@echo "$(INSTALL_DIR)" > $(CONFIG_DIR)/path
+	@echo ""
+	@echo "Installation complete!"
+	@echo ""
+	@echo "To activate NOW in this shell, run:"
+	@echo "  source $(INSTALL_DIR)/shell/hawkins.sh"
+	@echo ""
+	@echo "Or launch a new Hawkins shell anytime with: hawkins-shell"
+	@echo ""
+	@echo "Tip: Use 'make install launch' to auto-launch after install."
+
+launch:
+	@exec $(BIN_DIR)/hawkins-shell
+
+install-global:
+	@echo "Installing Hawkins Terminal (system-wide)..."
 	@mkdir -p $(INSTALL_DIR)
 	@mkdir -p $(CONFIG_DIR)
 	@mkdir -p $(BIN_DIR)
@@ -67,31 +95,13 @@ install:
 	@echo ""
 	@echo "Installation complete! Restart your terminal or run: exec $$SHELL"
 
-install-rich: install
+install-rich: install-global
 	@echo "export HAWKINS_DISPLAY_MODE=rich" > $(CONFIG_DIR)/env
 	@echo "Rich mode configured."
 
-install-light: install
+install-light: install-global
 	@echo "export HAWKINS_DISPLAY_MODE=light" > $(CONFIG_DIR)/env
 	@echo "Light mode configured."
-
-install-local:
-	@echo "Installing Hawkins Terminal (local/on-demand only)..."
-	@mkdir -p $(INSTALL_DIR)
-	@mkdir -p $(CONFIG_DIR)
-	@mkdir -p $(BIN_DIR)
-	@cp -r cli $(INSTALL_DIR)/
-	@cp -r shell $(INSTALL_DIR)/
-	@cp -r prompt $(INSTALL_DIR)/
-	@chmod +x $(INSTALL_DIR)/cli/hawkins
-	@ln -sf $(INSTALL_DIR)/cli/hawkins $(BIN_DIR)/hawkins
-	@cp hawkins-shell $(INSTALL_DIR)/
-	@chmod +x $(INSTALL_DIR)/hawkins-shell
-	@ln -sf $(INSTALL_DIR)/hawkins-shell $(BIN_DIR)/hawkins-shell
-	@echo "$(INSTALL_DIR)" > $(CONFIG_DIR)/path
-	@echo ""
-	@echo "Local install complete! Run 'hawkins-shell' to launch."
-	@echo "Shell RC files were NOT modified."
 
 uninstall:
 	@echo "Uninstalling Hawkins Terminal..."
@@ -204,4 +214,4 @@ clean:
 	@rm -f /tmp/.hawkins_running_*
 	@echo "Done."
 
-reinstall: uninstall install
+reinstall: uninstall install-global
